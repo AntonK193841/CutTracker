@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 
+from app.models import Material, Part, CuttingPlan
+
+
 app = FastAPI(
     title="CutTracker API",
     description="System for sheet metal cutting optimization and inventory tracking",
-    version="0.1.0",
+    version="0.2.0",
 )
 
 
@@ -11,7 +14,7 @@ app = FastAPI(
 def root():
     return {
         "name": "CutTracker",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "status": "running",
     }
 
