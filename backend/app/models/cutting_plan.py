@@ -19,10 +19,6 @@ class CuttingPlan(Base):
         nullable=False,
     )
 
-    sheet_id: Mapped[int] = mapped_column(
-        nullable=False,
-    )
-
     used_area: Mapped[float] = mapped_column(
         Float,
         nullable=False,
