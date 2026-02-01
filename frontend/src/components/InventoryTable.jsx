@@ -1,5 +1,6 @@
 function InventoryTable({
   materials = [],
+  loading = false,
 }) {
   return (
     <section className="inventory-section">
@@ -7,7 +8,11 @@ function InventoryTable({
         <h2>Склад материалов</h2>
       </div>
 
-      {materials.length === 0 ? (
+      {loading ? (
+        <div className="empty-state">
+          Загрузка материалов...
+        </div>
+      ) : materials.length === 0 ? (
         <div className="empty-state">
           Материалы пока не загружены
         </div>

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers import (
     cutting_router,
@@ -13,7 +14,18 @@ app = FastAPI(
         "System for sheet metal cutting "
         "optimization and inventory tracking"
     ),
-    version="0.6.0",
+    version="1.0.0",
+)
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -26,7 +38,7 @@ app.include_router(cutting_router)
 def root():
     return {
         "name": "CutTracker",
-        "version": "0.6.0",
+        "version": "1.0.0",
         "status": "running",
     }
 

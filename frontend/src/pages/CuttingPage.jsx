@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   calculateCutting,
 } from "../api/cutting";
+
+import {
+  getMaterials,
+} from "../api/materials";
 
 import CuttingForm from "../components/CuttingForm";
 import CuttingResult from "../components/CuttingResult";
@@ -13,11 +17,35 @@ function CuttingPage() {
   const [result, setResult] =
     useState(null);
 
+  const [materials, setMaterials] =
+    useState([]);
+
   const [loading, setLoading] =
     useState(false);
 
+  const [materialsLoading, setMaterialsLoading] =
+    useState(true);
+
   const [error, setError] =
     useState(null);
+
+
+  useEffect(() => {
+    async function loadMaterials() {
+      try {
+        const data =
+          await getMaterials();
+
+        setMaterials(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setMaterialsLoading(false);
+      }
+    }
+
+    loadMaterials();
+  }, []);
 
 
   async function handleCalculate(data) {
@@ -66,7 +94,10 @@ function CuttingPage() {
           result={result}
         />
 
-        <InventoryTable />
+        <InventoryTable
+          materials={materials}
+          loading={materialsLoading}
+        />
       </main>
     </div>
   );

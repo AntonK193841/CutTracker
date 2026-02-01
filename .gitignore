@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 env/
@@ -11,9 +11,10 @@ env/
 # Environment
 .env
 
-# Node
-node_modules/
-frontend/dist/
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
 
 # IDE
 .idea/
@@ -23,9 +24,20 @@ frontend/dist/
 .DS_Store
 Thumbs.db
 
-# Testing
-.pytest_cache/
-.coverage
+# Node
+node_modules/
+frontend/dist/
 
 # Logs
 *.log
+
+# Temporary files
+*.tmp
+
+# Python build
+build/
+dist/
+*.egg-info/
+
+# Excel temporary files
+~$*.xlsx
